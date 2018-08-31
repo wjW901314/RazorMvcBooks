@@ -1,0 +1,17 @@
+﻿SqlServer2008R2数据连接方式：
+1、在appsettings.json中添加数据连接字符串
+"ConnectionStrings": {
+    "BookContext": "Server=.;Database=Books;Trusted_Connection=True;MultipleActiveResultSets=true"
+  } 
+备注:数据库Books必须在数据中已存在
+2、使用EF建立DbContext;
+	查看此BookContext
+3、打开程序包管理控制台，执行此命令： Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
+	进行安装包
+	3.1、安装完成后在接着执行Add-Migration Initial执行完成后会在项目里生成一个文件“Migrations”
+	3.2、在接着执行Update-DataBase命令生成数据表；
+	备注:如存在错误；请检查Microsoft.VisualStudio.Web.CodeGeneration.Design、Microsoft.AspNetCore.All的版本是否是2.0
+4、最后在window powerShell中执行此命令dotnet aspnet-codegenerator razorpage -m Book -dc BookContext -udl -outDir Pages\Books --referenceScriptLibraries
+   生成Page\Books文件夹中生成增删改查的cshtml;
+5、Demo完成；运行程序就可以进行操作了；
+   1
